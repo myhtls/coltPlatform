@@ -1,0 +1,117 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml">
+
+    <ui:define name="head">
+        <f:facet name="last">
+            <script type="text/javascript">
+                //当选哪对象时返回参数显示相关对话框
+                function handleComplete(xhr, status, args) {
+                    if (args.result) {
+                        if (args.result === "crudOk") {
+                            PF('addTopVar').hide();
+                        }
+                    }
+                }
+                ;
+            </script>
+
+        </f:facet>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="Container100 ui-fluid">
+            <div class="Card">
+                <h:form id="sysMenuId">
+                    <p:growl showDetail="true" autoUpdate="true" showSummary="false" id="messageId"/>
+                    <!-- 添加父节点 -->
+                    <p:commandButton value="添加" oncomplete="PF('addTopVar').show();" process="@none" update=":crudFormId"/>
+                    <br/>
+                    <br/>
+                    <!-- 树 -->
+                    <p:tree value="#{sysMenuView.root}" var="_sysMenu" 
+                            animate="true" propagateSelectionDown="false"
+                            id="treeId" selectionMode="single" selection="#{sysMenuView.selectedNode}">
+                        <p:treeNode>
+                            <h:outputText value="#{_sysMenu.name}"/>
+                        </p:treeNode>
+                    </p:tree>
+                    <!-- 右键弹出 -->
+                    <p:contextMenu for="treeId">
+                        <p:menuitem value="添加子菜单" oncomplete="PF('addTopVar').show();"
+                                    actionListener="#{sysMenuView.addChildrenData()}" update=":crudFormId" process="@this,treeId"/>
+                        <p:menuitem value="修改" oncomplete="PF('addTopVar').show();" 
+                                    update=":crudFormId" process="@this,treeId" 
+                                    actionListener="#{sysMenuView.modify()}"/>
+
+                        <p:menuitem value="删除" 
+                                    oncomplete="PF('deleteTopVar').show();"  process="@this,treeId"/>
+
+                    </p:contextMenu>
+                </h:form>
+
+                <p:dialog modal="true" widgetVar="deleteTopVar" header="信息提示">
+                    <h:form>
+                        <h:outputText value="是否删除当前菜单信息?" />
+                        <p:separator />
+                        <p:commandButton value="删除"  update=":sysMenuId" style="width: 100px;"
+                                         actionListener="#{sysMenuView.deletePuSysMenuAction()}" oncomplete="PF('deleteTopVar').hide();" />
+                        <p:button value="关闭"  style="width: 100px;"
+                                  onclick="PF('deleteTopVar').hide();return false;" />
+                    </h:form>
+                </p:dialog>
+
+                <p:dialog modal="true" widgetVar="addTopVar" header="添加菜单">
+                    <h:form id="crudFormId">
+                        <h:panelGrid>
+                            <p:row>
+                                <p:column>
+                                    <h:outputLabel value="上级菜单:" for="parentMenuId"/>
+                                </p:column>
+
+                                <p:column>
+                                    <h:outputText id="parentMenuId"
+                                                  value="#{sysMenuView.parentPuSysMenu == null?'暂无':sysMenuView.parentPuSysMenu.name}"/>
+                                </p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column>
+                                    <p:inputText placeholder="菜单名称" value="#{sysMenuView.puSysMenu.name}" required="true"
+                                                 requiredMessage="请填写菜单名称."/>
+                                </p:column>
+                                <p:column>
+                                    <p:spinner placeholder="排序名称" value="#{sysMenuView.puSysMenu.sequence}"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:inputText placeholder="菜单图标" value="#{sysMenuView.puSysMenu.icon}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText placeholder="菜单链接" value="#{sysMenuView.puSysMenu.url}"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column colspan="3">
+                                    <p:inputTextarea placeholder="备注" value="#{sysMenuView.puSysMenu.description}" cols="3" rows="3" />
+                                </p:column>
+                            </p:row>
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2">
+                            <p:commandButton value="#{sysMenuView.puSysMenu.id==null?'保存':'修改'}"
+                                             actionListener="#{sysMenuView.createOrUpdateSysMenuAction}" process="@form"
+                                             update=":crudFormId,:sysMenuId"
+                                             oncomplete=" handleComplete(xhr, status, args)"/>
+                            <p:commandButton value="关闭" process="@this" oncomplete="PF('addTopVar').hide()" actionListener="#{sysMenuView.clearParentPuSysMenu}"/>
+                        </h:panelGrid>
+                    </h:form>
+                </p:dialog>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

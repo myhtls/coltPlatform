@@ -1,0 +1,135 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:venture="http://primefaces.org/venture">
+    <!-- LAYOUT MENU COVER -->
+    <div id="layout-menu-cover" class="">
+        <div id="layout-menu-cover-scroll-content" class="">
+            <h:form id="menuform">
+                <venture:menu model="#{loginUserSysMenu.model}"> 
+                    
+                    <ui:remove>
+                    <p:submenu id="om_dashboards" label="DASHBOARD">
+                        <p:menuitem id="om_db_landing"  icon="icon-jewel" value="Your Promotion Page"/>
+                        <p:menuitem id="om_db_sc"  icon="icon-lightbulb" value="Dashboard Social"/>
+                        <p:menuitem id="om_db_pm1"  icon="icon-lightbulb" value="Dashboard Project Management 1"/>
+                        <p:menuitem id="om_db_pm2"  icon="icon-lightbulb" value="Dashboard Project Management 2"/>
+                    </p:submenu>
+
+                    <p:submenu id="om_menuoptcolor" label="MENU AND COLOR OPTIONS">
+                        <p:menuitem id="om_def" url="#" onclick="Venture.changeBodyClass('');return false;" icon="icon-checklist" value="Default Menu Option"/>
+                        <p:menuitem id="om_fixed" url="#" onclick="Venture.changeBodyClass('FixedMenu');return false;" icon="icon-checklist" value="Fixed Default Menu Option"/>
+                        <p:menuitem id="om_popup" url="#" onclick="Venture.changeBodyClass('PopupMenu');return false;" icon="icon-duplicate" value="Popup Menu Option"/>
+                        <p:submenu id="tpbr_colors" label="Topbar Color Options" icon="icon-chevron-down">
+                            <p:menuitem id="om_bg_yellow" url="#" onclick="Venture.changeBodyClass('YellowTopbar');return false;" icon="icon-brush" value="Yellow Color"/>
+                            <p:menuitem id="om_bg_orange" url="#" onclick="Venture.changeBodyClass('OrangeTopbar');return false;" icon="icon-brush" value="Orange Color"/>
+                            <p:menuitem id="om_bg_aqua" url="#" onclick="Venture.changeBodyClass('AquaTopbar');return false;" icon="icon-brush" value="Aqua Color"/>
+                            <p:menuitem id="om_bg_blue" url="#" onclick="Venture.changeBodyClass('BlueTopbar');return false;" icon="icon-brush" value="Blue Color"/>
+                            <p:menuitem id="om_bg_red" url="#" onclick="Venture.changeBodyClass('RedTopbar');return false;" icon="icon-brush" value="Red Color"/>
+                            <p:menuitem id="om_bg_green" url="#" onclick="Venture.changeBodyClass('GreenTopbar');return false;" icon="icon-brush" value="Green Color"/>
+                            <p:menuitem id="om_bg_purple" url="#" onclick="Venture.changeBodyClass('PurpleTopbar');return false;" icon="icon-brush" value="Purple Color"/>
+                            <p:menuitem id="om_bg_pink" url="#" onclick="Venture.changeBodyClass('PinkTopbar');return false;" icon="icon-brush" value="Pink Color"/>
+                        </p:submenu>
+
+                        <p:submenu id="bg_colors" label="Background Color Options" icon="icon-chevron-down">
+                            <p:menuitem id="bg_palegreen" url="#" onclick="Venture.changeBodyClass('PaleGreenBG');return false;" icon="icon-brush" value="Pale Green"/>
+                            <p:menuitem id="bg_paleblue" url="#" onclick="Venture.changeBodyClass('PaleBlueBG');return false;" icon="icon-brush" value="Pale Blue"/>
+                            <p:menuitem id="bg_leaden" url="#" onclick="Venture.changeBodyClass('LeadenBG');return false;" icon="icon-brush" value="Leaden"/>
+                            <p:menuitem id="bg_dark" url="#" onclick="Venture.changeBodyClass('DarkBG');return false;" icon="icon-brush" value="Dark"/>
+                            <p:menuitem id="bg_darkpurple" url="#" onclick="Venture.changeBodyClass('DarkPurpleBG');return false;" icon="icon-brush" value="Dark Purple"/>
+                        </p:submenu>
+                    </p:submenu>
+
+                    <p:submenu id="om_theme" label="VENTURE THEME">
+                        <p:menuitem id="om_sample"  icon="icon-pill" value="Sample Page"/>
+                        <p:menuitem id="om_forms"  icon="icon-article" value="Form Elements"/>
+                        <p:menuitem id="om_data"  icon="icon-stack" value="Data Components"/>
+                        <p:menuitem id="om_datatable"  icon="icon-browser" value="DataTable"/>
+                        <p:menuitem id="om_panels"  icon="icon-to-do" value="Panels"/>
+                        <p:menuitem id="om_overlays"  icon="icon-box" value="Overlays"/>
+                        <p:menuitem id="om_menus"  icon="icon-list" value="Menus"/>
+                        <p:menuitem id="om_messages"  icon="icon-conversation" value="Messages"/>
+                        <p:menuitem id="om_charts"  icon="icon-graph-pie" value="Charts"/>
+                        <p:menuitem id="om_fileupload"  icon="icon-cloud-upload" value="FileUpload"/>
+                        <p:menuitem id="om_misc"  icon="icon-view-thumb" value="Misc"/>
+                    </p:submenu>
+
+                    <p:submenu id="om_default" label="DEFAULT PAGES">
+                        <p:menuitem id="om_empty"  icon="icon-copy" value="Empty Page"/>
+                        <p:menuitem id="om_login"  icon="icon-lock-open" value="Login Page"/>
+                        <p:menuitem id="om_error"  icon="icon-thumbs-down" value="Error Page"/>
+                        <p:menuitem id="om_404"  icon="icon-document-delete" value="404 Page"/>
+                        <p:menuitem id="om_access"  icon="icon-tag-delete" value="Access Denied Page"/>
+                    </p:submenu>
+
+                    <p:submenu id="om_hierarchy" label="MENU HIERARCHY">
+                        <p:submenu id="om_sm1" label="Submenu 1" icon="icon-chevron-down">
+                            <p:submenu id="om_sm11" label="Submenu 1.1" icon="icon-chevron-down">
+                                <p:submenu id="om_sm111" label="Submenu 1.1.1" icon="icon-chevron-down">
+                                    <p:menuitem id="om_lnk1111" url="#" icon="icon-link" value="Link 1"/>
+                                    <p:menuitem id="om_lnk1112" url="#" icon="icon-link" value="Link 2"/>
+                                    <p:menuitem id="om_lnk1113" url="#" icon="icon-link" value="Link 3"/>
+                                </p:submenu>
+                            </p:submenu>
+
+                            <p:menuitem id="om_lnk12" url="#" icon="icon-link" value="Submenu 1.2"/>
+                            <p:menuitem id="om_lnk13" url="#" icon="icon-link" value="Submenu 1.3"/>
+                        </p:submenu>
+                        <p:submenu id="om_sm2" label="Submenu 2" icon="icon-chevron-down">
+                            <p:submenu id="om_21" label="Submenu 2.1" icon="icon-chevron-down">
+                                <p:submenu id="om_211" label="Submenu 2.1.1" icon="icon-chevron-down">
+                                    <p:menuitem id="om_lnk2111" url="#" icon="icon-link" value="Link 1"/>
+                                    <p:menuitem id="om_lnk2112" url="#" icon="icon-link" value="Link 2"/>
+                                    <p:menuitem id="om_lnk2113" url="#" icon="icon-link" value="Link 3"/>
+                                </p:submenu>
+                            </p:submenu>
+                        </p:submenu>
+                    </p:submenu>
+
+                    <p:submenu id="om_fonticon" label="FONT ICON">
+                        <p:menuitem id="om_icons"  icon="icon-rocket" value="Font Icons"/>
+                    </p:submenu>
+
+                    <p:submenu id="om_docs" label="DOCUMENTATION">
+                        <p:submenu id="om_docs_core" label="Core CSS Docs" icon="icon-folder">
+                            <p:menuitem id="om_docs_1"  icon="icon-tags" value="应用程序管理" action="/manager/platform/application/applicationList.xhtml?faces-redirect=true"/>
+                            <p:menuitem id="om_docs_2"  icon="icon-tags" value="Menus"/>
+                            <p:menuitem id="om_docs_3"  icon="icon-tags" value="Responsive Mode"/>
+                            <p:menuitem id="om_docs_4"  icon="icon-tags" value="ContainerX"/>
+                            <p:menuitem id="om_docs_5"  icon="icon-tags" value="Flex Boxes"/>
+                            <p:menuitem id="om_docs_6"  icon="icon-tags" value="WidX"/>
+                            <p:menuitem id="om_docs_7"  icon="icon-tags" value="Selection"/>
+                            <p:menuitem id="om_docs_8"  icon="icon-tags" value="Visibility"/>
+                            <p:menuitem id="om_docs_9"  icon="icon-tags" value="Displaying"/>
+                            <p:menuitem id="om_docs_10" icon="icon-tags" value="Positioning"/>
+                            <p:menuitem id="om_docs_11" icon="icon-tags" value="Underline"/>
+                            <p:menuitem id="om_docs_12" icon="icon-tags" value="Floating"/>
+                            <p:menuitem id="om_docs_13" icon="icon-tags" value="Overflows"/>
+                            <p:menuitem id="om_docs_14" icon="icon-tags" value="Empty Boxes"/>
+                            <p:menuitem id="om_docs_15" icon="icon-tags" value="Opacity"/>
+                            <p:menuitem id="om_docs_16" icon="icon-tags" value="Text Aligning"/>
+                            <p:menuitem id="om_docs_17" icon="icon-tags" value="Box Sizing"/>
+                            <p:menuitem id="om_docs_18" icon="icon-tags" value="Font Size"/>
+                            <p:menuitem id="om_docs_19" icon="icon-tags" value="Font Weights"/>
+                            <p:menuitem id="om_docs_20" icon="icon-tags" value="Transitions"/>
+                        </p:submenu>
+
+                        <p:submenu id="om_docs_layout" label="Layout CSS Docs" icon="icon-folder">
+                            <p:menuitem id="om_docs_21" icon="icon-tags" value="LESS"/>
+                            <p:menuitem id="om_docs_22" icon="icon-tags" value="Cards"/>
+                            <p:menuitem id="om_docs_23" icon="icon-tags" value="Text Colors"/>
+                            <p:menuitem id="om_docs_24" icon="icon-tags" value="Background Colors"/>
+                            <p:menuitem id="om_docs_25" icon="icon-tags" value="Borders"/>
+                            <p:menuitem id="om_docs_26" icon="icon-tags" value="Separators"/>
+                            <p:menuitem id="om_docs_27" icon="icon-tags" value="Effects"/>
+                            <p:menuitem id="om_docs_28" icon="icon-tags" value="Headings"/>
+                        </p:submenu>
+                    </p:submenu>
+                        </ui:remove>
+                </venture:menu>
+            </h:form>
+        </div>
+    </div>
+</ui:composition>

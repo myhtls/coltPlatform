@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml">
+
+    <ui:define name="head">
+        <f:facet name="last">
+            <script type="text/javascript">
+                //当选哪对象时返回参数显示相关对话框
+                function handleComplete(xhr, status, args) {
+                    if (args.result) {
+                        if (args.result === "crudOk") {
+                            PF('addTopVar').hide();
+                        }
+                    }
+                }
+                ;
+            </script>
+
+        </f:facet>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="Container100 ui-fluid">
+            <div class="Card">
+                <h:form id="appWizardFormId">
+                    <p:wizard flowListener="#{applicationWizardView.onFlowProcess}" nextLabel="下一步" backLabel="上一步"  >
+                        <p:tab id="basicInfo" title="输入基本信息">
+                            <p:panel header="自定义应用程序信息">
+                                <p:messages />
+                                <h:panelGrid columns="2">
+                                    <h:outputLabel value="应用程序标签" for="appLabelId">
+                                    <p:inputText id="appLabelId" required="true" requiredMessage="请填写应用程序标签." value="#{applicationWizardView.application.labelName}" >
+                                        <p:ajax event="blur" update="appNameId" listener="#{applicationWizardView.apiNameByLabelNameEvent()}" process="appLabelId" />
+                                     </p:inputText>
+
+                                    <h:outputLabel value="应用程序名称" for="appNameId" />
+                                        <p:inputText id="appNameId" required="true" requiredMessage="请填写应用程序名称."  value="#{applicationWizardView.application.apiName}"/>
+
+                                        <h:outputLabel value="描述" for="msId"/>
+                                        <p:inputTextarea cols="3" rows="3" id="msId" value="#{applicationWizardView.application.description}" />
+
+                                    </h:outputLabel>
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab id="logo" title="选择Logo">
+                            <p:panel header="资源文件">
+                                暂不写上传.
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab id="tabId" title="选择选项卡">
+                            <p:panel header="Contact Information">
+                                <p:messages />
+                                <p:pickList value="#{applicationWizardView.appTabModels}" var="_tab" itemValue="#{_tab}" itemLabel="#{_tab.labelName}" showTargetControls="true" responsive="true" converter="appTabsConverter" converterMessage="转换错误." >
+                                    <f:facet name="sourceCaption">可用选项卡</f:facet>
+                                    <f:facet name="targetCaption">选定选项卡</f:facet>
+                                    <p:column style="width:90%;">
+                                        <h:outputText value="#{_tab.labelName}" />
+                                    </p:column>
+                                </p:pickList>
+                                <br />
+                                <p:commandButton value="保存" style="width: 100px;" actionListener="#{applicationWizardView.saveActionListener}" process="@form" action="#{applicationWizardView.navigation()}" update="appWizardFormId" />
+                                <p:button style="width:100px;" value="取消" outcome="applicationList.xhtml?faces-redirect=true" />
+                            </p:panel>
+                        </p:tab>
+
+
+                    </p:wizard>
+
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

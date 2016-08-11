@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    </f:facet>
+    <title>PrimeFaces Venture</title>
+</h:head>
+<h:body class="PaleBlueBG">
+    <h:outputStylesheet library="venture-layout" name="css/core-layout.css"/>
+    <h:outputStylesheet library="venture-layout" name="css/animate.css"/>
+    <h:outputStylesheet library="venture-layout" name="css/nanoscroller.css"/>
+    <h:outputStylesheet library="venture-layout" name="css/venture-font.css"/>
+    <h:outputStylesheet library="venture-layout" name="css/venture-layout.css"/>
+    <h:form>
+    <div class="Wid100 YellowBack" style="height:20rem;">
+
+    </div>
+
+    <div class="Wid80 MarAuto" style="margin-top:-20rem;">
+        <div class="Wid70 MarAuto WidAutoOnMobile TexAlCenter">
+
+            <div class="Wid70 MarAuto WidAutoOnMobile">
+                <div class="EmptyBox30"/>
+                <div class="Container100 TexAlCenter">
+                    <a  class="DispBlock">
+                        <img src="#{resource['venture-layout:images/logo.svg']}" style="height:25px;" />
+                    </a>
+                </div>
+
+                <div class="EmptyBox30"/>
+                <div class="Card ui-fluid ShadowEffect">
+                    <div class="Wid100 FontLatoRegular Leaden Fs18" style="margin:2rem 0px;">欢迎回来,请在这里登录 !</div>
+
+                    <p:messages autoUpdate="true" showSummary="true" />
+                    <div class="Container100">
+                        <p:inputText placeholder="登陆用户名" style="padding:15px !important;" value="#{userPassword.userName}" required="true" requiredMessage="请填写用户名."/>
+                    </div>
+                    <div class="Container100">
+                        <p:password placeholder="密码" style="padding:15px !important;" value="#{userPassword.password}" required="true" requiredMessage="请填写密码."/>
+                    </div>
+                    
+                    <div class="EmptyBox20"/>
+                    <div class="Container100">
+                      
+                      <p:commandButton action="#{loginAction.login()}"  value="登陆" styleClass="GreenButton"/>
+                    </div>
+
+                    <div class="EmptyBox10"/>
+                    <div class="Separator"/>
+                    <div class="EmptyBox10"/>
+
+                    <ui:remove>
+                        <!-- 其它登陆暂不提供 -->
+                    <span class="DispBlock OvHidden FontLatoBold Fs16 Leaden">Or Sign In</span>
+                    <div class="EmptyBox10"/>
+                    <div class="Container50 Responsive100">
+                        <p:commandButton type="button" value="With Facebook" icon="fa fa-facebook Fs16" styleClass="NavyButton White"/>
+                    </div>
+                    <div class="Container50 Responsive100">
+                        <p:commandButton type="button" value="With Twitter" icon="fa fa-twitter Fs16" styleClass="AquaButton White"/>
+                    </div>
+                    <div class="Container50 Responsive100">
+                        <p:commandButton type="button" value="With Google Plus" icon="fa fa-google-plus Fs16" styleClass="RedButton White"/>
+                    </div>
+                    <div class="Container50 Responsive100">
+                        <p:commandButton type="button" value="With Linkedin" icon="fa fa-linkedin Fs16" styleClass="OrangeButton White"/>
+                    </div>
+                    </ui:remove>
+                </div>
+
+                <div class="EmptyBox20"/>
+                <div class="Wid100 FontLatoRegular Fs12 TransparentWhite"> <i class="fa fa-copyright DispInlBlock"/> PrimeFaces Venture Theme And Layout <br />All rights reserved.</div>
+                <div class="EmptyBox30"/>
+            </div>
+        </div>
+    </div>
+                    </h:form>
+    <style>.ui-button-text, .ui-button-text-only .ui-button-text{padding:15px !important; transition:none !important;}</style>
+</h:body>
+</html>

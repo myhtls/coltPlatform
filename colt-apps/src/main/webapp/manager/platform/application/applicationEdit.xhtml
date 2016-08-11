@@ -1,0 +1,63 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="appId" value="#{applicationHomeView.id}" converter="javax.faces.Long" />
+        <f:event listener="#{applicationHomeView.initData}" type="javax.faces.event.PreRenderViewEvent"/>
+    </f:metadata>
+
+    <ui:define name="head">
+        <f:facet name="last">
+            <script type="text/javascript">
+                //当选哪对象时返回参数显示相关对话框
+
+            </script>
+
+        </f:facet>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="Container100 ui-fluid">
+            <div class="Card">
+                <h:form id="applicationEditFormId">
+                        <p:panel header="自定义应用程序编辑">
+                            <p:messages id="messagesId" />
+                            <p:commandButton value="编辑" actionListener="#{applicationHomeView.updateApplicationAction}" update="applicationEditFormId" action="#{applicationHomeView.navigation}" />
+                            <p:button value="返回" outcome="applicationList.xhtml" />
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="应用程序标签" for="appLabelId">
+                                    <p:inputText id="appLabelId" required="true" requiredMessage="请填写应用程序标签." value="#{applicationHomeView.application.labelName}" >
+                                        <p:ajax event="blur" update="appNameId" listener="#{applicationHomeView.apiNameByLabelNameEvent()}" process="appLabelId" />
+                                    </p:inputText>
+
+                                    <h:outputLabel value="应用程序名称" for="appNameId" />
+                                    <p:inputText id="appNameId" required="true" requiredMessage="请填写应用程序名称."  value="#{applicationHomeView.application.apiName}"/>
+
+                                    <h:outputLabel value="描述" for="msId"/>
+                                    <p:inputTextarea cols="3" rows="3" id="msId" value="#{applicationHomeView.application.description}" />
+
+                                </h:outputLabel>
+                            </h:panelGrid>
+                                <h:outputText value="logo资源暂不开发" />
+
+                            <p:pickList value="#{applicationHomeView.appTabModels}" var="_tab" itemValue="#{_tab}" itemLabel="#{_tab.labelName}" id="picklistId"
+                                        showTargetControls="true" responsive="true" converter="appTabsConverter" converterMessage="转换错误." >
+                                <p:ajax event="transfer" listener="#{applicationHomeView.onTransfer}" update="messagesId" process="picklistId" />
+                                <f:facet name="sourceCaption">可用选项卡</f:facet>
+                                <f:facet name="targetCaption">选定选项卡</f:facet>
+
+                                <p:column style="width:90%;">
+                                    <h:outputText value="#{_tab.labelName}" />
+                                </p:column>
+                            </p:pickList>
+                        </p:panel>
+
+                    </h:form>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+
+   
+
+
+    <!-- -->
+
+    <!-- omnifaces -->
+
+    <!-- configure the Combined Resource Handler for Glyphicons -->
+    <context-param>
+        <param-name>org.omnifaces.COMBINED_RESOURCE_HANDLER_EXCLUDED_RESOURCES</param-name>
+        <param-value>bsf:css/icons.css</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>org.omnifaces.VIEW_SCOPE_MANAGER_MAX_ACTIVE_VIEW_SCOPES</param-name>
+        <param-value>15</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>org.omnifaces.EXCEPTION_TYPES_TO_UNWRAP</param-name>
+        <param-value>javax.ejb.EJBException,javax.persistence.RollbackException</param-value>
+    </context-param>
+
+    <!-- -->
+
+
+    <!-- primefaces -->
+
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>venture</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>primefaces.CLIENT_SIDE_VALIDATION</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>primefaces.UPLOADER</param-name>
+        <param-value>commons</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>primefaces.FONT_AWESOME</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>primefaces.TRANSFORM_METADATA</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <!-- -->
+    <context-param>
+        <param-name>Poweredby</param-name>
+        <param-value>www.hxdev.cn</param-value>
+    </context-param>
+
+
+    <!-- Making the system time zone the default -->
+    <context-param>
+        <param-name>javax.faces.FACELETS_BUFFER_SIZE</param-name>
+        <param-value>65535</param-value>
+    </context-param>
+
+
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>server</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+        <param-value>.xhtml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+        <!--<param-value>false</param-value>-->
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <!-- Development, Production, SystemTest, UnitTest -->
+        <param-value>Development</param-value>
+    </context-param>
+
+    
+
+    <filter>
+        <!-- http://showcase.omnifaces.org/filters/CharacterEncodingFilter -->
+        <!-- the default charset is also set to UTF-8. only affects HTTP POST requests, not HTTP GET requests. -->
+        <filter-name>characterEncodingFilter</filter-name>
+        <filter-class>org.omnifaces.filter.CharacterEncodingFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>characterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>gzipResponseFilter</filter-name>
+        <filter-class>org.omnifaces.filter.GzipResponseFilter</filter-class>
+        <init-param>
+            <description>The threshold size in bytes. Must be a number between 0 and 9999. Defaults to 150.</description>
+            <param-name>threshold</param-name>
+            <param-value>150</param-value>
+        </init-param>
+        <init-param>
+            <description>The mimetypes which needs to be compressed. Must be a commaseparated string. Defaults to the below values.</description>
+            <param-name>mimetypes</param-name>
+            <param-value>
+                text/plain, text/html, text/xml, text/css, text/javascript, text/csv, text/rtf,
+                application/xml, application/xhtml+xml, application/javascript, application/json,
+                image/svg+xml
+            </param-value>
+        </init-param>
+    </filter>
+    
+    <filter-mapping>
+         <filter-name>gzipResponseFilter</filter-name>
+        <servlet-name>FacesServlet</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+
+
+
+    <filter>
+        <filter-name>FileUploadFilter</filter-name>
+        <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+        <init-param>
+            <!-- Maximum file size in bytes to keep uploaded files in memory.
+            If a file exceeds this limit, it'll be temporarily written to disk. -->
+            <param-name>thresholdSize</param-name>
+            <param-value>51200</param-value>
+        </init-param>
+        <!--init-param>
+            <! - - Disk repository path to keep temporary files that exceeds the threshold size.
+            By default it is System.getProperty("java.io.tmpdir") - ->
+            <param-name>uploadDirectory</param-name>
+            <param-value>/upload</param-value>
+        </init-param-->
+    </filter>
+    <filter-mapping>
+        <filter-name>FileUploadFilter</filter-name>
+        <servlet-name>FacesServlet</servlet-name>
+    </filter-mapping>
+
+
+    <filter>
+        <filter-name>facesExceptionFilter</filter-name>
+        <filter-class>org.omnifaces.filter.FacesExceptionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>facesExceptionFilter</filter-name>
+        <servlet-name>FacesServlet</servlet-name>
+    </filter-mapping>
+<!-- 
+    <filter>
+        <filter-name>HxdevConnectionFilter</filter-name>
+        <filter-class>cn.hxdev.platform.filter.HxdevConnectionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HxdevConnectionFilter</filter-name>
+        <url-pattern>/manager/*</url-pattern>
+    </filter-mapping>
+-->
+    <servlet>
+        <servlet-name>FacesServlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FacesServlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+
+
+    
+    <!-- captcha servlet-->
+    <!--servlet>
+        <servlet-name>kaptcha</servlet-name>
+        <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+        <init-param>
+            <param-name>kaptcha.border</param-name>
+            <param-value>no</param-value>
+        </init-param>
+        <init-param>
+            <param-name>kaptcha.border.color</param-name>
+            <param-value>105,179,90</param-value>
+        </init-param>
+        <init-param>
+            <param-name>kaptcha.textproducer.font.color</param-name>
+            <param-value>red</param-value>
+        </init-param>
+        <init-param>
+            <param-name>kaptcha.image.width</param-name>
+            <param-value>250</param-value>
+        </init-param>
+        <init-param>
+            <param-name>kaptcha.image.height</param-name>
+            <param-value>90</param-value>
+        </init-param>
+        <init-param>
+            <param-name>kaptcha.textproducer.font.size</param-name>
+            <param-value>70</param-value>
+        </init-param>
+        <init-param>
+            <param-name>kaptcha.session.key</param-name>
+            <param-value>code</param-value>
+        </init-param>
+        <init-param>
+            <param-name>kaptcha.textproducer.char.length</param-name>
+            <param-value>4</param-value>
+        </init-param>
+        <init-param>
+            <param-name>kaptcha.textproducer.font.names</param-name>
+            <param-value>宋体,楷体,微软雅黑</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>kaptcha</servlet-name>
+        <url-pattern>/images/kaptcha.jpg</url-pattern>
+    </servlet-mapping-->
+
+    <session-config>
+        <!-- expects the session timeout in minutes -->
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <welcome-file-list>
+        <welcome-file>login.xhtml</welcome-file>
+    </welcome-file-list>
+    
+    <!--
+    <error-page>
+        <exception-type>java.lang.IllegalStateException</exception-type>
+        <location>/login.xhtml</location>
+    </error-page>
+    -->
+
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/errorpage/error.xhtml</location>
+    </error-page>
+
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/errorpage/500.xhtml</location>
+    </error-page>
+
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errorpage/404.xhtml</location>
+    </error-page>
+
+    <mime-mapping>
+        <extension>eot</extension>
+        <mime-type>application/vnd.ms-fontobject</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>eot?#iefix-fu33y6</extension>
+        <mime-type>application/vnd.ms-fontobject</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg#enriquetabold</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg#enriquetaregular</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg#poppinsbold</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg#poppinssemibold</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg#poppinsmedium</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg#poppinsregular</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg#poppinslight</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg#Venture</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg#fontawesomeregular</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>ttf</extension>
+        <mime-type>application/font-sfnt</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>woff</extension>
+        <mime-type>application/font-woff</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>woff2</extension>
+        <mime-type>application/font-woff2</mime-type>
+    </mime-mapping>
+</web-app>

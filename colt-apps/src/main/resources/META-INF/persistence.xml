@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="appPm" transaction-type="JTA">
+        <jta-data-source>jdbc/platform</jta-data-source>
+        <class>cn.hope.platform.core.entity.base.Sysmenu</class>
+        <class>cn.hope.platform.core.entity.base.User</class>
+        <class>cn.hope.platform.core.entity.base.Userlicense</class>
+        <class>cn.hope.platform.core.entity.base.Userprofile</class>
+        <class>cn.hope.platform.core.entity.base.Userrole</class>
+        <class>cn.hope.platform.core.entity.base.Organization</class>
+        <class>cn.hope.platform.core.entity.platform.Application</class>
+        <class>cn.hope.platform.core.entity.platform.CustomeObject</class>
+        <class>cn.hope.platform.core.entity.platform.AppTabs</class>
+        <class>cn.hope.platform.core.entity.platform.CustomField</class>
+        <class>cn.hope.platform.core.entity.platform.CustomeFieldType</class>
+        <class>cn.hope.platform.core.entity.platform.ApplicationTabs</class>
+        <properties>
+            <!-- create-or-extend-tables -->
+            <property name="eclipselink.ddl-generation" value="none"/>
+      
+            <property name="eclipselink.show_sql" value="true" />	
+            <property name="eclipselink.logging.parameters" value="true"/>	
+            <property name="eclipselink.logging.level" value="FINE"></property>		
+            <property name="eclipselink.logging.level.sql" value="FINE"></property>				
+            <property name="eclipselink.weaving" value="static"></property>		
+            <property name="eclipselink.orm.throw.exceptions" value="true"></property> 		
+            <property name="eclipselink.target-server" value="SunAS9"></property>	
+        
+   
+        </properties>
+    </persistence-unit>
+</persistence>

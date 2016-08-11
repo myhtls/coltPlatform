@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml">
+
+    <ui:define name="head">
+        <f:facet name="last">
+            <script type="text/javascript">
+                //当选哪对象时返回参数显示相关对话框
+                function handleComplete(xhr, status, args) {
+                    if (args.result) {
+                        if (args.result === "crudOk") {
+
+                        }
+                    }
+                }
+                ;
+            </script>
+
+        </f:facet>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="Container100 ui-fluid">
+            <div class="Card">
+                <h:form id="applicationFormId">
+                    <p:messages />
+                    <p:button value="创建" outcome="/manager/platform/application/appWizard.xhtml" />
+                    <p:panel header="应用程序">
+                    <p:dataTable id="memberTableId" emptyMessage="暂无相关信息" draggableColumns="true"
+                                 rows="10"  paginator="true" paginatorPosition="bottom"
+                                 currentPageReportTemplate="查询到{totalRecords}条记录，本页显示{startRecord}～{endRecord}；第{currentPage}/{totalPages}页"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="20,50,100" style="width:100%;" value="#{applicationWizardView.result}"
+                                 var="_app" rowIndexVar="rowIdx">
+
+                    <p:column styleClass="center-column" width="2%">
+                        <f:facet name="header">序号</f:facet>
+                        <h:outputText value="#{rowIdx + 1}" />
+                    </p:column>
+
+                        <p:column width="15">
+                            <f:facet name="header">操作</f:facet>
+                            <p:link value="编辑" outcome="applicationEdit.xhtml?appId=#{_app.id}"/>
+                            |
+                            <p:commandLink value="删除" />
+                        </p:column>
+
+                    <p:column width="15">
+                        <f:facet name="header">标签名称</f:facet>
+                        <h:outputText value="#{_app.labelName}" />
+                    </p:column>
+
+                        <p:column width="15">
+                            <f:facet name="header">api名称</f:facet>
+                            <h:outputText value="#{_app.apiName}" />
+                        </p:column>
+
+                        <p:column width="15">
+                            <f:facet name="header">是否标准</f:facet>
+                            <h:outputText value="#{_app.standard==true?'是':'否'}" />
+                        </p:column>
+
+                        <p:column width="15">
+                            <f:facet name="header">是否部署</f:facet>
+                            <h:outputText value="#{_app.deployed==true?'是':'否'}" />
+                        </p:column>
+
+                        <p:column width="15">
+                            <f:facet name="header">描述</f:facet>
+                            <h:outputText value="#{_app.description}" />
+                        </p:column>
+
+                    </p:dataTable>
+                    </p:panel>
+
+                </h:form>
+             </div>
+        </div>
+    </ui:define>
+</ui:composition>

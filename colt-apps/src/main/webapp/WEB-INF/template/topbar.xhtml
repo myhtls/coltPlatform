@@ -1,0 +1,98 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <!-- LAYOUT TOPBAR COVER -->
+    <div id="layout-topbar-cover">
+        <div id="layout-topbar-row">
+            <div id="layout-topbar-left">
+                <a id="mobile-menu-btn" class="topbar-link Animated03"><i class="fa fa-navicon"/></a>
+                <a id="logo" href="dashboard-social.xhtml">
+                    <img src="#{resource['venture-layout:images/logo.svg']}"/>
+                </a>
+            </div>
+            <div id="layout-topbar-right">
+
+                <a id="topbar-menu-btn" class="topbar-link Animated03 Fright"><i class="icon-dots-3"/></a>
+
+                <!-- LAYOUT TOPBAR MENU -->
+
+                <ul id="layout-topbar-menu-cover">
+                    <li>
+                        <a id="" class="topbar-link Animated03 Fright"><i class="icon-gear"/> <span>Settings</span></a>
+                        <ul class="">
+                            <li><a href="#" class="menulink TexAlCenter Fs14"> <i class="icon-user Blue Fs30 Wid100 Fnone DispBlock MarBot10"/> Account Settings</a></li>
+                            <li><a href="#" class="menulink TexAlCenter Fs14"> <i class="icon-message Blue Fs30 Wid100 Fnone DispBlock MarBot10"/> E-Mail Settings</a></li>
+                            <li><a href="#" class="menulink TexAlCenter Fs14"> <i class="icon-wifi Blue Fs30 Wid100 Fnone DispBlock MarBot10"/> Connection Settings</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a id="" class="topbar-link Animated03 Fright"><i class="icon-stopwatch"/> <span>TODOs</span></a>
+                        <ul class="">
+                            <li><a href="#" class="menulink"> <i class="icon-bell60 Red"/>
+                                <span class="Fs10 DispBlock">Today</span>
+                                <span class="DispBlock Blue Fs14 FontPoppinsRegular">Poe Dameron</span>
+                                <span class="DispBlock FontPoppinsLight">Hi Luke, Cursus est primis euismod auctor sem nascetur..</span>
+                            </a>
+                            </li>
+                            <li><a href="#" class="menulink"> <i class="icon-bell60 Blue"/>
+                                <span class="Fs10 DispBlock">Today</span>
+                                <span class="DispBlock Blue Fs14 FontPoppinsRegular">Kylo Ren</span>
+                                <span class="DispBlock FontPoppinsLight">Hi Luke, Cursus est primis euismod auctor sem nascetur est..</span>
+                            </a>
+                            </li>
+                            <li><a href="#" class="menulink"> <i class="icon-bell60 Green"/>
+                                <span class="Fs10 DispBlock">Yesterday</span>
+                                <span class="DispBlock Blue Fs14 FontPoppinsRegular">Leia Solo</span>
+                                <span class="DispBlock FontPoppinsLight">Hi Luke, Cursus est primis euismod auctor..</span>
+                            </a>
+                            </li>
+                            <li><a href="#" class="menulink"> <i class="icon-bell60 Red"/>
+                                <span class="Fs10 DispBlock">Yesterday</span>
+                                <span class="DispBlock Blue Fs14 FontPoppinsRegular">Obi-Wan Kenobi</span>
+                                <span class="DispBlock FontPoppinsLight">Hi Luke, Cursus est primis euismod auctor sem nascetur est laoreet sagittis dui..</span>
+                            </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a id="" class="topbar-link Animated03 Fright"><i class="icon-message"/> <span>Messages</span></a>
+                        <ul class="">
+                            <li><a href="#" class="menulink"> <i class="icon-podcast3 Fs20 Green"/>
+                                <span class="Fs10 DispBlock">18.08.2016</span>
+                                <span class="Fs10 DispBlock">At My Office</span>
+                                <span class="DispBlock Red Fs14 FontPoppinsRegular">Office Orientations</span>
+                            </a>
+                            </li>
+                            <li><a href="#" class="menulink"> <i class="icon-podcast3 Fs20 Green"/>
+                                <span class="Fs10 DispBlock">18.08.2016</span>
+                                <span class="Fs10 DispBlock">At Meeting Room</span>
+                                <span class="DispBlock Blue Fs14 FontPoppinsRegular">Meeting With Boss</span>
+                            </a>
+                            </li>
+                            <li><a href="#" class="menulink"> <i class="icon-podcast3 Fs20 Green"/>
+                                <span class="Fs10 DispBlock">18.08.2016</span>
+                                <span class="Fs10 DispBlock">At Customer Office</span>
+                                <span class="DispBlock Blue Fs14 FontPoppinsRegular">New Products Setup</span>
+                            </a>
+                            </li>
+                            <li><a href="#" class="menulink"> <i class="icon-podcast3 Fs20 Green"/>
+                                <span class="Fs10 DispBlock">18.08.2016</span>
+                                <span class="Fs10 DispBlock">At My Office</span>
+                                <span class="DispBlock Green Fs14 FontPoppinsRegular">Office Orientations</span>
+                            </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div id="search-bar">
+                    <input type="text" placeholder="Search" />
+                    <a id="search-btn" class="Animated03"><i class="fa fa-hand-o-right"/></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</ui:composition>

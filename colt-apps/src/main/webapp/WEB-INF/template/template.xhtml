@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    </f:facet>
+    <title><ui:insert name="title">PrimeFaces Venture - Responsive Layout</ui:insert></title>
+    <h:outputScript library="venture-layout" name="js/nanoscroller.js"/>
+    <h:outputScript library="venture-layout" name="js/layout.js"/>
+    <h:outputScript library="js" name="locales_zh.js"/>
+    <ui:insert name="head"/>
+</h:head>
+
+<h:body class="YellowTopbar PaleBlueBG">
+    <h:outputStylesheet library="venture-layout" name="css/core-layout.css"/>
+    <h:outputStylesheet library="venture-layout" name="css/animate.css"/>
+    <h:outputStylesheet library="venture-layout" name="css/nanoscroller.css"/>
+    <h:outputStylesheet library="venture-layout" name="css/venture-font.css"/>
+    <h:outputStylesheet library="venture-layout" name="css/venture-layout.css"/>
+
+    <ui:insert name="topbar">
+        <ui:include src="/WEB-INF/template/topbar.xhtml"/>
+    </ui:insert>
+
+    <!-- LAYOUT CONTAINER -->
+
+    <div id="layout-container">
+        <div id="layout-container-row">
+            <ui:insert name="layoutmenu">
+                <ui:include src="/WEB-INF/template/layoutmenu.xhtml"/>
+            </ui:insert>
+
+            <!-- PORTLETS COVER -->
+            <div id="layout-portlets-cover">
+                <ui:insert name="content"/>
+
+                <ui:insert name="footer">
+                    <ui:include src="/WEB-INF/template/footer.xhtml"/>
+                </ui:insert>
+            </div>
+        </div>
+    </div>
+
+</h:body>
+</html>
