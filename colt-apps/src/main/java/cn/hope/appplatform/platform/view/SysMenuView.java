@@ -6,8 +6,6 @@ import cn.hope.platform.core.entity.base.Sysmenu;
 import cn.hope.viewplatform.primefaces.PrimeFacesUtils;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
 import org.omnifaces.cdi.ViewScoped;
 
 import javax.annotation.PostConstruct;
@@ -21,7 +19,6 @@ import org.primefaces.model.TreeNode;
 import org.slf4j.Logger;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 系统菜单 Created by myhtls on 16/5/27.

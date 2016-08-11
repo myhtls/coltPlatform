@@ -10,8 +10,6 @@ import cn.hope.platform.core.entity.base.Sysmenu;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,7 +17,6 @@ import org.apache.commons.lang.StringUtils;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultSubMenu;
-import org.primefaces.model.menu.MenuElement;
 import org.primefaces.model.menu.MenuModel;
 
 /**
@@ -49,7 +46,7 @@ public class LoginUserSysMenu implements java.io.Serializable {
         menuElement.addElement(dmi);
     }
 
-   private  List<Sysmenu> resultAll = new ArrayList<>();
+    private List<Sysmenu> resultAll = new ArrayList<>();
 
     private void buildSysmenu(Sysmenu sysmenu, DefaultSubMenu parent) {
         List<Sysmenu> result = sysMenuService.getChilde(sysmenu, resultAll);
@@ -58,6 +55,7 @@ public class LoginUserSysMenu implements java.io.Serializable {
             for (Sysmenu sysMenu : result) {
                 if (StringUtils.isEmpty(sysMenu.getUrl())) {
                     treeNode = new DefaultSubMenu(sysMenu.getName());
+                    treeNode.setIcon(sysMenu.getIcon());
                     parent.addElement(treeNode);
                     buildSysmenu(sysMenu, treeNode);
                 } else {
@@ -80,6 +78,7 @@ public class LoginUserSysMenu implements java.io.Serializable {
             //当为父节点
             if (sysMenuService.hasParentNode(sysMenu)) {
                 treeNode = new DefaultSubMenu(sysMenu.getName());
+                treeNode.setIcon(sysMenu.getIcon());
                 parent.addElement(treeNode);
                 buildSysmenu(sysMenu, treeNode);
             }
